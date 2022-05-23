@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1094397264463",
+    "project_id": "read-and-remember-7b78c",
+    "storage_bucket": "read-and-remember-7b78c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094397264463:android:9e8b4b3aac6bff4fdc203a",
+        "android_client_info": {
+          "package_name": "com.team87.read_and_remember"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1094397264463-p682kjj1ol78d5jr097nsbgl0ec5lokl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgtsl3ALFlMaADWZpbukWXWYX0hsARnV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1094397264463-p682kjj1ol78d5jr097nsbgl0ec5lokl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
