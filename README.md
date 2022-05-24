@@ -40,7 +40,7 @@ Kitap okuma planlayıcısı ve hatırlatıcısı uygulama.
 
 ---
 
-# Sprint 1
+# Sprint 2
 
 - **Sprint Notları**: Uygulama fikri kesinleşti. Uygulamaya hangi özelliklerin ekleneceği kararlaştırıldı. Bir sonraki sprinte kadarki hedefler belirlendi.
 
