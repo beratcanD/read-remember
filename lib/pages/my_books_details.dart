@@ -6,56 +6,67 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login_page_firebase_flutter/pages/my_books_details.dart';
 
 class MyBooksDetail extends StatelessWidget {
-    final int index;
-    MyBooksDetail(this.index);
+    final id;
+    MyBooksDetail(this.id);
+
+    
+
 
 
   @override
   Widget build(BuildContext context) {
     final _firestore=FirebaseFirestore.instance;
-    CollectionReference booksRef=_firestore.collection("books");
+    final user = FirebaseAuth.instance.currentUser!;
+
+    //final booksRef = _firestore.collection("books");
+    final booksRef2 = _firestore.collection("books").doc(id);
+
+    print(id);
+
+  
+
     return Scaffold(
       appBar: AppBar(title: Text("Detaylar"),
       ),
       body: Center(
-        child: Container(
-          child: Column(
-            children: [
-              StreamBuilder<QuerySnapshot>(
-                stream: booksRef.snapshots(),
-                builder: (BuildContext context, AsyncSnapshot asyncSnapshot){
-                  List<DocumentSnapshot>listOfDocumentSnap = asyncSnapshot.data.docs;
-                  return Flexible(
-                    child: ListView.builder(
-                        itemCount:listOfDocumentSnap.length,
-                        itemBuilder:(context,index){
-                            return Card(
-                              color: Colors.grey,
-                              child: Column(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text("Kitap Adı:" + "${listOfDocumentSnap[index]["bookName"]}",
-                                      style: TextStyle(fontSize: 24),
-                                      ),
-                                      Text("Kitap Yazarı:" + "${listOfDocumentSnap[index]["bookAuthor"]}",
-                                      style: TextStyle(fontSize: 24),
-                                      ),
-                                      Text("Notlar:" + "${listOfDocumentSnap[index]["bookNote"]}",
-                                      style: TextStyle(fontSize: 18),
-                                    )
-                                    ]
-                                  ),
-                                ],
-                              ),
-                            );
-                        } ,
-                    ),
-                  );
-              } ,
-              )
-            ],
-          ),
+        child: Column(
+          children: [
+            StreamBuilder(
+              stream: booksRef2.snapshots(),
+              builder: (context, AsyncSnapshot asyncSnapshot){
+                return Flexible(
+                  child: ListView.builder(
+                      itemCount:1,
+                      itemBuilder:(context,index){
+                          if (!asyncSnapshot.hasData) {
+                            return Text("Loading");
+                          }
+                          return Card(
+                            color: Colors.grey,
+                            child: Column(
+                              children: [
+                                Column(
+                                  children: [
+                                    Text("Kitap Adı:" + "${asyncSnapshot.data["bookName"]}",
+                                    style: TextStyle(fontSize: 24),
+                                    ),
+                                    Text("Kitap Yazarı:" + "${asyncSnapshot.data["bookAuthor"]}",
+                                    style: TextStyle(fontSize: 24),
+                                    ),
+                                    Text("Notlar:" + "${asyncSnapshot.data["bookNote"]}",
+                                    style: TextStyle(fontSize: 18),
+                                  )
+                                  ]
+                                ),
+                              ],
+                            ),
+                          );
+                      } ,
+                  ),
+                );
+            } ,
+            )
+          ],
         ),
       ),
     );

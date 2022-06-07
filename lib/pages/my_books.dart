@@ -15,10 +15,12 @@ class MyBooks extends StatefulWidget {
 class _MyBooksState extends State<MyBooks> {
   get booksNames => null;
   final _firestore=FirebaseFirestore.instance;
-
+  final user = FirebaseAuth.instance.currentUser!;
 
   Widget build(BuildContext context) {
     CollectionReference booksRef=_firestore.collection("books");
+
+    
 
     return Scaffold(
       body: Center(
@@ -26,7 +28,7 @@ class _MyBooksState extends State<MyBooks> {
           child: Column(
             children: [
               StreamBuilder<QuerySnapshot>(
-                stream: booksRef.snapshots(),
+                stream: booksRef.where("userId", isEqualTo: user.uid).snapshots(),
                 builder:(BuildContext context, AsyncSnapshot asyncSnapshot){
                   if (asyncSnapshot.hasError){
                     return Center(
@@ -59,7 +61,7 @@ class _MyBooksState extends State<MyBooks> {
                                   },
                                   ),
                                   onTap: (){
-                                    Navigator.push(context, MaterialPageRoute (builder: (context) => MyBooksDetail(index)));
+                                    Navigator.push(context, MaterialPageRoute (builder: (context) => MyBooksDetail(listOfDocumentSnap[index].id)));
                                   },
                                 ),
                               );

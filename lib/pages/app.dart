@@ -38,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         constraints: BoxConstraints.expand(),
         child: pages[tabselected],
@@ -67,14 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
               selectedIcon: Icon(Icons.home_outlined),
             ),
             NavigationDestination(
-              icon: Icon(Icons.call),
+              icon: Icon(Icons.book),
               label: 'My Books',
-              selectedIcon: Icon(Icons.call_outlined),
+              selectedIcon: Icon(Icons.book),
             ),
             NavigationDestination(
-              icon: Icon(Icons.call),
+              icon: Icon(Icons.add),
               label: 'Add New Book',
-              selectedIcon: Icon(Icons.call_outlined),
+              selectedIcon: Icon(Icons.add),
             )
           ],
         ),

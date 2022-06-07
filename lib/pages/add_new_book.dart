@@ -21,60 +21,105 @@ class _AddNewBookState extends State<AddNewBook> {
   TextEditingController bookNoteController = TextEditingController();
 
   @override
+  void dispose() {
+    bookNameController.dispose();
+    bookAuthorController.dispose();
+    bookNoteController.dispose();
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
-
-
-
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: Text("Add new book"),
+      ),
       body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                child: Text(
-                  'Yeni Kitap Ekle',
-                  style: GoogleFonts.mako(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.5,
-                  )
-                ),
-                padding: EdgeInsets.only(bottom: 30, top: 60)
+        reverse: true,
+        child: Column(
+         mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: kDefaultPadding,),
+             Text(
+              'Add new book',
+              style: GoogleFonts.mako(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
+              )
+            ),
+          const SizedBox(height: kDefaultPadding * 3,),
+          Padding(
+            padding:const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: kPrimaryColor),
+                borderRadius: BorderRadius.circular(15),
               ),
-              TextFormField(
+              child: TextField(
                 controller: bookNameController,
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                 icon: Icon(Icons.book),
-                hintText: 'Kitabınızın ismi?',
-                labelText: 'Kitap ismini giriniz *',
-                )
+                hintText: 'What is your book name?',
+                labelText: 'Enter a book name *',
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: kDefaultPadding,
+                  horizontal: kDefaultPadding,
+                ),
+                ),
               ),
-              TextFormField(
+            ),
+          ),
+          const SizedBox(height: kDefaultPadding * 3),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: kPrimaryColor),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: TextField(
                 controller: bookAuthorController,
                 decoration: const InputDecoration(
                   icon: Icon(Icons.book),
-                  hintText: 'Kitabınızın Yazarı?',
-                  labelText: 'Kitabınızın yazarını giriniz *',
+                  hintText: 'Enter a book author',
+                  labelText: 'What is your book autohor? *',
 
                 ),
               ),
-              TextFormField(
+            ),
+          ),
+          const SizedBox(height: kDefaultPadding * 3,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: kPrimaryColor),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: TextField(
                 controller: bookNoteController,
                 decoration: const InputDecoration(
                   icon: Icon(Icons.book),
-                  hintText: 'Aldınığınız notlar',
-                  labelText: 'Notlarınızı girebilirsiniz *'
+                  hintText: 'Your notes',
+                  labelText: 'Enter your notes *'
                 ),
                 minLines: 3,
                 maxLines: 5,  // allow user to enter 5 line in textfield
                 keyboardType: TextInputType.multiline
               ),
-              const SizedBox(height: kDefaultPadding),
-              ActionBtn(text: 'Kitabı Ekle', press: () => _showToast(context)),
-            ],
-          )),
-          )
+            ),
+          ),
+          const SizedBox(height: 50),
+          ActionBtn(text: 'Add Book', press: () => _showToast(context)),
+        ],
+      ),
+      )
     );
   }
 
@@ -89,7 +134,7 @@ class _AddNewBookState extends State<AddNewBook> {
           .then((value) => {
             scaffold.showSnackBar(
               SnackBar(
-                content: const Text('Kitap Eklendi.'),
+                content: const Text('Book has been added.'),
                 action: SnackBarAction(label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
               )
             ),

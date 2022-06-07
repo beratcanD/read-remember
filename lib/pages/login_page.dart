@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/logo/firebase-logo.svg',
+                  Image.asset('assets/images/logo/rr-logo.png',
                       height: 100),
                   Text(
                     'Read & Remember',
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: TextField(
                         controller: emailController,
-                        decoration: InputDecoration(
+                        decoration:  InputDecoration(
                           border: InputBorder.none,
                           contentPadding: const EdgeInsets.symmetric(
                             vertical: kDefaultPadding,
@@ -160,6 +160,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-        ));
+        )
+    );
   }
 }

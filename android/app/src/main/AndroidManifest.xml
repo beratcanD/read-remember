@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lucasudar.login_page_firebase_fluter">
    <application
-        android:label="login_page_firebase_fluter"
+        android:label="ReadRemember"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
